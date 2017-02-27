@@ -1,0 +1,134 @@
+// Imports
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,700|Simonetta:900|Work+Sans:400,600')
+
+// Fonts
+$font-roboto: 'Roboto', sans-serif
+$font-simonetta: 'Simonetta', sans-serif
+$font-work: 'Work Sans', sans-serif
+
+// Colors
+$color-blue: #3094C0
+$color-green: #1AC4A2
+
+// Styles
+.top-bar
+  background-color: #262a35
+
+  .top-bar-title
+    font-size: 1.65rem
+    font-family: $font-simonetta
+    color: #FFF
+    padding-left: 0.1rem
+    padding-right: 0.1rem
+
+    &:hover
+      cursor: pointer
+
+  .top-bar-right
+    width: auto
+
+  ul
+    list-style: none
+    display: inline-block
+
+    li
+      background-color: #262a35
+      font-size: 0.75rem
+      font-family: $font-roboto
+      font-weight: 700
+      letter-spacing: 0.1rem
+
+      a
+        color: #FFF
+        padding: 1.4rem 0.1rem 0.6rem 0.1rem
+
+.site-header
+  background-color: #262a35
+  padding-top: 1rem
+  padding-bottom: 1rem
+  font-family: $font-roboto
+  font-weight: 100
+  font-size: 2rem
+  color: #FFF
+  border-bottom: solid 0.3rem $color-green
+
+  .dock-details-container
+    display: inline-block
+    font-family: $font-work
+    font-size: 0.9rem
+    font-weight: 400
+
+    .details-group
+      margin-right: 1rem
+
+      label
+        display: inline-block
+        color: $color-green
+        font-weight: 600
+
+      &:last-child
+        margin-right: 0
+
+.content-container
+  padding-top: 3rem
+  font-family: $font-work
+  color: #333
+
+.table-wrapper
+  .table-title
+    display: inline-block
+    font-weight: 600
+    font-size: 1rem
+    padding-top: 1rem
+    padding-bottom: 0.5rem
+    color: #0575AC
+
+  .select-wrapper
+    float: right
+    display: inline-block
+    font-size: 0.85rem
+    font-weight: 600
+    color: #919191
+
+    select
+      width: 3.5rem
+      border: none
+      color: $color-blue
+      font-weight: 600
+      margin-bottom: 0
+
+  table
+    border-spacing: 0
+    font-size: 0.8rem
+
+    th
+      border-top: solid 1px #DDD
+      border-bottom: solid 1px #DDD
+
+      &:first-child
+        border-left: solid 1px #DDD
+
+      &:last-child
+        border-right: solid 1px #DDD
+
+    tbody
+      td
+        border-bottom: solid 1px #DDD
+        padding-top: 1rem
+        padding-bottom: 1rem
+
+        &.symbols-cell
+          font-size: 1rem
+
+          i.fa-fire, i.fa-times
+            color: #ED4337
+
+          i.fa-flask
+            color: #9A32CD
+
+          i.fa-check
+            color: $color-green
+
+      tr:hover:not(.empty-table-row)
+        background-color: rgba(176, 202, 205, 0.2)
+        cursor: pointer

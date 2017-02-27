@@ -1,0 +1,168 @@
+{% extends 'web/base.html' %}
+
+{% block page-title %}
+    <div class="medium-3 columns">
+        DOCK DETAILS
+    </div>
+{% endblock %}
+
+{% block dock-details %}
+    <div class="medium-9 columns text-right">
+        <div class="dock-details-container">
+            <span class="details-group">
+                <label> DOCK ID:</label>
+                <span>
+                    {{ dock.dock_id }}
+                </span>
+            </span>
+            <span class="details-group">
+                <label> DOCK NAME:</label>
+                <span>
+                    {% if dock.name %}
+                        {{ dock.name }}
+                    {% else %}
+                        --
+                    {% endif %}
+                </span>
+            </span>
+            <span class="details-group">
+                <label> SHIP ID:</label>
+                <span>
+                    {% if dock.docked_ship.ship_id %}
+                        {{ dock.docked_ship.ship_id }}
+                    {% else %}
+                        --
+                    {% endif %}
+                </span>
+            </span>
+            <span class="details-group">
+                <label> SHIP NAME:</label>
+                <span>
+                    {% if dock.docked_ship.name %}
+                        {{ dock.docked_ship.name }}
+                    {% else %}
+                        --
+                    {% endif %}
+                </span>
+            </span>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <nav aria-label="You are here:" role="navigation">
+      <ul class="breadcrumbs">
+        <li><a href="{% url 'dock_overview' %}">Dock Overview</a></li>
+        <li>
+          <span class="show-for-sr">Current: </span>
+            Dock: {{ dock.dock_id }}
+        </li>
+      </ul>
+    </nav>
+
+    <div class="table-wrapper">
+        <div class="table-title"> Employees </div>
+        <table class="unstriped">
+            <thead>
+                <tr>
+                    <th>LAST NAME</th>
+                    <th>FIRST NAME</th>
+                    <th class="text-center">SUPERVISOR</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employee in dock.employees.all %}
+                    <tr>
+                        <td> {{ employee.person.last_name }} </td>
+                        <td> {{ employee.person.first_name }} </td>
+                        <td class="symbols-cell text-center">
+                            {% if employee.is_supervisor %}
+                               <i class="fa fa-check fa-fw" aria-hidden="true"></i>
+                            {% else %}
+                                <i class="fa fa-times fa-fw" aria-hidden="true"></i>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr class="empty-table-row">
+                        <td class="text-center" colspan="3">
+                            There are no employees working for this dock.
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="table-wrapper">
+        <div class="table-title"> Containers </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>CONTAINER ID</th>
+                    <th class="text-center">CARGO HAZARDS</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for container in dock.docked_ship.containers.all %}
+                <tr>
+                    <td> {{ container.container_id }} </td>
+                    <td class="symbols-cell text-center">
+                        {% for hazard in container.hazards.all %}
+                            {% if hazard.name == 'Fire Hazard' %}
+                                <i class="fa fa-fire fa-fw" aria-hidden="true"></i>
+                            {% endif %}
+
+                            {% if hazard.name == 'Chemical Hazard' %}
+                                <i class="fa fa-flask fa-fw" aria-hidden="true"></i>
+                            {% endif %}
+                        {% empty %}
+                            --
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr class="empty-table-row">
+                    <td class="text-center" colspan="2">
+                        {% if dock.docked_ship %}
+                            There are no containers on the ship.
+                        {% else %}
+                            There is no ship docked at the moment.
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+     <div class="table-wrapper">
+        <div class="table-title"> Historic Overview of Ships </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>SHIP ID</th>
+                    <th>SHIP NAME</th>
+                    <th>ARRIVAL</th>
+                    <th>DEPARTURE</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for manifests in dock.manifests.all %}
+                <tr>
+                    <td> {{ manifests.ship.ship_id }} </td>
+                    <td> {{ manifests.ship.name }} </td>
+                    <td> {{ manifests.arrival | date:'SHORT_DATE_FORMAT' }} UTC </td>
+                    <td> {{ manifests.departure | date:'SHORT_DATE_FORMAT'}} UTC </td>
+                </tr>
+                {% empty %}
+                    <tr class="empty-table-row">
+                        <td class="text-center" colspan="4">
+                            There are no manifests available for this dock.
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -14,13 +14,13 @@ from PortManager.utilities.env_reader import get_env
 environment = get_env('ENVIRONMENT')
 
 if environment == 'LOCAL':
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Wekker_API.settings.local')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'PortManager.settings.local')
 
 if environment == 'TESTING':
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Wekker_API.settings.testing')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'PortManager.settings.testing')
 
 if environment == 'PRODUCTION':
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Wekker_API.settings.production')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'PortManager.settings.production')
 
 
 application = get_wsgi_application()

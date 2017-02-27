@@ -33,8 +33,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'compressor',
+    'sass_processor',
     'web',
-    'api'
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -128,6 +130,14 @@ REST_FRAMEWORK = {
 
 # Static settings
 
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'sass_processor.finders.CssFinder',
+    'compressor.finders.CompressorFinder',
+]
+
+STATIC_ROOT = 'static'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
