@@ -27,7 +27,9 @@ This is an example project based on an [assignment](#case-description).
 4. Make sure the MySQL Server is up and running.
 5. Create a database called **'port_manager'**.
 6. In the project folder create a file **parameters.yml** and enter the following data:
+   
    ```
+   
     ENVIRONMENT: LOCAL
     SECRET_KEY: '&i4hv(y#kh6yl=s5jls&-@)5h!8t!8p^rkr0=p9f7oswvlw8#@'
     DATABASE_HOST: mysql
