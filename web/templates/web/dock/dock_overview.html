@@ -7,67 +7,60 @@
 {% endblock %}
 
 {% block content %}
-<div class="table-wrapper">
-    <div class="table-title"> Docks </div>
-    <table class="unstriped">
-        <thead>
-            <tr>
-                <th>DOCK ID</th>
-                <th>DOCK NAME</th>
-                <th>SHIP ID</th>
-                <th>SHIP NAME</th>
-                <th class="text-center">CARGO HAZARDS</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in data %}
-            <tr onclick="location.href='{% url 'dock_details' item.dock.dock_id %}';">
-                <td>
-                    {{ item.dock.dock_id }}
-                </td>
-                <td>
-                    {% if item.dock.name %}
-                        {{ item.dock.name }}
-                    {% else %}
-                        --
-                    {% endif %}
-                </td>
-                <td>
-                    {% if item.dock.docked_ship.ship_id %}
-                        {{ item.dock.docked_ship.ship_id }}
-                    {% else %}
-                        --
-                    {% endif %}
-                </td>
-                <td>
-                    {% if item.dock.docked_ship.name %}
-                        {{ item.dock.docked_ship.name }}
-                    {% else %}
-                        --
-                    {% endif %}
-                </td>
-                <td class="symbols-cell text-center">
-                    {% for hazard in item.hazards %}
-                        {% if hazard.name == 'Fire Hazard' %}
-                            <i class="fa fa-fire fa-fw" aria-hidden="true"></i>
+    <div class="table-wrapper">
+        <table class="unstriped">
+            <thead>
+                <tr>
+                    <th>DOCK ID</th>
+                    <th>DOCK NAME</th>
+                    <th>SHIP ID</th>
+                    <th>SHIP NAME</th>
+                    <th class="text-center">CARGO HAZARDS</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in data %}
+                <tr onclick="location.href='{% url 'dock_details' item.dock.dock_id %}';">
+                    <td>
+                        {{ item.dock.dock_id }}
+                    </td>
+                    <td>
+                        {% if item.dock.name %}
+                            {{ item.dock.name }}
+                        {% else %}
+                            --
                         {% endif %}
-
-                        {% if hazard.name == 'Chemical Hazard' %}
-                            <i class="fa fa-flask fa-fw" aria-hidden="true"></i>
+                    </td>
+                    <td>
+                        {% if item.dock.docked_ship.ship_id %}
+                            {{ item.dock.docked_ship.ship_id }}
+                        {% else %}
+                            --
                         {% endif %}
-                    {% empty %}
-                        --
-                    {% endfor %}
-                </td>
-            </tr>
-            {% empty %}
-                <tr class="empty-table-row">
-                    <td class="text-center" colspan="3">
-                        There are no docks.
+                    </td>
+                    <td>
+                        {% if item.dock.docked_ship.name %}
+                            {{ item.dock.docked_ship.name }}
+                        {% else %}
+                            --
+                        {% endif %}
+                    </td>
+                    <td class="symbols-cell text-center">
+                        {% for hazard in item.hazards %}
+                            <i class="fa {{ hazard.web_icon }} fa-fw" aria-hidden="true"></i>
+                        {% empty %}
+                            --
+                        {% endfor %}
                     </td>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
+                {% empty %}
+                    <tr class="non-link-row">
+                        <td class="text-center" colspan="5">
+                            There are no docks.
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
