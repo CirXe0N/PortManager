@@ -15,14 +15,14 @@
     <link rel="stylesheet" href="{% sass_src 'web/sass/base.sass' %}">
     {% block add_stylesheets %}{% endblock %}
 
-    {# JAVASCRIPT #}
+    {# JAVASCRIPT SCRIPTS #}
     <script src="{% static 'web/js/jquery-3.1.1.min.js' %}"></script>
     <script src="{% static 'web/js/foundation.min.js' %}"></script>
     {% block add_head_js %}{% endblock %}
 </head>
 <body>
     {% block navigation %}
-        {# NAVIGATION #}
+        {# Navigation Bar #}
         <div class="top-bar">
             <div class="row columns">
                 <div class="top-bar-title" onclick="location.href='{% url 'dock_overview' %}';">
@@ -55,7 +55,7 @@
             </div>
         </div>
 
-        {# HEADER #}
+        {# Header Section #}
         <div class="site-header">
             <div class="row">
                 {% block page-title %}{% endblock %}
@@ -66,7 +66,7 @@
 
 
 
-    {# CONTENT #}
+    {# Page Content #}
     <div class="row columns">
         <div class="content-container">
             {% block content %}{% endblock %}

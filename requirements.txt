@@ -4,6 +4,7 @@ django-compressor==2.1.1
 django-cors-headers==2.0.2
 django-sass-processor==0.5.4
 djangorestframework==3.5.4
+elizabeth==0.3.17
 libsass==0.12.3
 PyMySQL==0.7.10
 PyYAML==3.12

@@ -50,6 +50,7 @@
 {% endblock %}
 
 {% block content %}
+    {# Breadcrumbs #}
     <nav aria-label="You are here:" role="navigation">
       <ul class="breadcrumbs">
         <li><a href="{% url 'dock_overview' %}">Dock Overview</a></li>
@@ -60,6 +61,7 @@
       </ul>
     </nav>
 
+    {# Table: Employees #}
     <div class="table-wrapper">
         <div class="table-title"> Employees </div>
         <table class="unstriped">
@@ -94,6 +96,7 @@
         </table>
     </div>
 
+    {# Table: Containers #}
     <div class="table-wrapper">
         <div class="table-title"> Containers </div>
         <table class="unstriped">
@@ -129,9 +132,10 @@
             </tbody>
         </table>
     </div>
-    
+
+    {# Table: History Overview #}
     <div class="table-wrapper">
-        <div class="table-title"> Historic Overview of Ships </div>
+        <div class="table-title"> History Overview </div>
         <table class="unstriped">
             <thead>
                 <tr>

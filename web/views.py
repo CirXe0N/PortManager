@@ -6,6 +6,7 @@ from web.models import Dock, CargoHazard, DockSupervisor, Person, Ship
 
 
 def dock_overview(request):
+    """A view to display an overview of docks"""
     template = 'web/dock/dock_overview.html'
     context = {
         'data': []
@@ -23,6 +24,7 @@ def dock_overview(request):
 
 
 def dock_details(request, dock_id):
+    """A view to display the details of a dock"""
     template = 'web/dock/dock_details.html'
 
     context = {
@@ -33,6 +35,7 @@ def dock_details(request, dock_id):
 
 
 def authentication(request):
+    """A view to display the login page and to post login information (E-mail and Password)."""
     template = 'web/authentication/authentication.html'
 
     context = {
@@ -55,11 +58,13 @@ def authentication(request):
 
 
 def do_logout_request(request):
+    """A view to request the logout process."""
     logout(request)
     return redirect('dock_overview')
 
 
 def user_profile(request):
+    """A view to display the details of a logged in user."""
     template = 'web/profile/user_profile.html'
     person = get_object_or_404(Person, user=request.user)
     ships = Ship.objects.filter(captain__person=person)
