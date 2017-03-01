@@ -1,5 +1,5 @@
 ## Port Management System
-This is an example project based on an assignment.
+This is an example project based on an [assignment](#case-description).
 
 **Notes**: 
 * This application has been developed and tested on [Python 3.52](https://www.python.org/downloads/)
@@ -89,5 +89,23 @@ Authorization  | Token [API KEY of a ship captain] |
 
 **Available Endpoints**
 
-GET /api/v1/ships/{ship_id or ship_name}
+
+GET /api/v1/ships/{The Ship captains' ship_id or ship_name}
+
+## Case Description
+We manage the Rotterdam port. Ships arrive daily. Every ship has a unique identifier, composed of letters and digits. A ship is loaded with containers. Every container has a unique number. It is known whether the contents of a container imply a fire and/or chemical hazard. A ship may enter a dock. A dock can contain only one ship at a time. On every dock, several people are employed, of which some are supervisors. The first name, last name, address and bank account number of each employee is known. Employees are assigned to a ship in the dock.
+
+**Tasks**
+* Create a relational database model of the described situation
+* Create a web application using Django that implements the following webpages:
+    * An overview page that lists docks with their current occupancy and cargo hazards.
+    * A dock detail page with for example the employees, current ship, containers and cargo hazards and a historic overview of ships
+    * Provide us with a solution that we can run using the Django development server ourselves, to see it in action.
+
+**Bonus assignment**
+Based on the application defined for the port management. A third party like the ship-captain would like to enquire the docks for docking possibilities for his ship. The captain uses a system which can handle 3rd party API’s via REST.
+Every captain which is listed in our system can authenticate in the ship software using his shipname/code and auth-token. This information is shown on the user profile of the captain accessed via a desktop browser.
+
+Bonus task: Our system should be capable to answer REST requests. Show how this can be implemented.
+
 
