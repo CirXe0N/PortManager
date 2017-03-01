@@ -8,7 +8,7 @@ from django.db import models
 class Dock(models.Model):
     dock_id = models.UUIDField(default=uuid.uuid4, editable=False, db_index=True)
     name = models.CharField(max_length=50, null=True, blank=True)
-    docked_ship = models.OneToOneField('Ship', related_name='dock', null=True)
+    docked_ship = models.OneToOneField('Ship', related_name='dock', null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False)
 
@@ -32,7 +32,7 @@ class DockManifest(models.Model):
 class Ship(models.Model):
     ship_id = models.CharField(unique=True, max_length=50, db_index=True)
     name = models.CharField(max_length=50, null=True, blank=True)
-    captain = models.ForeignKey('ShipCaptain', blank=True, null=True)
+    captain = models.ForeignKey('ShipCaptain', blank=True, null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False)
 
@@ -56,7 +56,8 @@ class Container(models.Model):
 
 
 class CargoHazard(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True)
+    web_icon = models.CharField(max_length=50, blank=True, null=True)
 
     def __str__(self):
         return self.name
