@@ -29,14 +29,13 @@ This is an example project based on an [assignment](#case-description).
 6. In the project folder create a file **parameters.yml** and enter the following data:
    
    ```
-   
     ENVIRONMENT: LOCAL
     SECRET_KEY: '&i4hv(y#kh6yl=s5jls&-@)5h!8t!8p^rkr0=p9f7oswvlw8#@'
-    DATABASE_HOST: mysql
+    DATABASE_HOST: [Hostname of your MySQL Database]
     DATABASE_PORT: 3306
     DATABASE_NAME: port_manager
-    DATABASE_USER: [username of your local database]
-    DATABASE_PASSWORD: [password of your local database]
+    DATABASE_USER: [Username of your MySQL Database]
+    DATABASE_PASSWORD: [Password of your MySQL Database]
    ```
 7. Save the file. 
 8. Run the following commands to setup database schema and to create dummy data:
