@@ -75,3 +75,18 @@ User          | Username                  | Password     | URL
 ------------- | ------------------------- | -------------| ---------------  
 Super Admin   | admin                     | test         | [Admin Page](http://localhost:8000/admin)
 Ship Captains | _[email_address of user]_ | test         | [Main Page](http://localhost:8000/)
+
+
+### API Information
+
+**Request Header Settings**
+
+Key            | Value                             |
+-------------- | --------------------------------- | 
+Authorization  | Token [API KEY of a ship captain] | 
+
+
+
+**Available Endpoints**
+GET /api/v1/ships/{ship_id or ship_name}
+
