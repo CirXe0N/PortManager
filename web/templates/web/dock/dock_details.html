@@ -73,8 +73,8 @@
             <tbody>
                 {% for employee in dock.employees.all %}
                     <tr class="non-link-row">
-                        <td> {{ employee.person.last_name }} </td>
-                        <td> {{ employee.person.first_name }} </td>
+                        <td> {{ employee.person.user.last_name }} </td>
+                        <td> {{ employee.person.user.first_name }} </td>
                         <td class="symbols-cell text-center">
                             {% if employee.is_supervisor %}
                                <i class="fa fa-check fa-fw" aria-hidden="true"></i>

@@ -17,11 +17,11 @@ class ShipAdmin(admin.ModelAdmin):
 
 @admin.register(Container)
 class ContainerAdmin(admin.ModelAdmin):
-    list_display = ('container_id', 'ship', '_display_hazards',)
+    list_display = ('container_id', 'ship', '_hazards',)
 
-    def _display_hazards(self, obj):
+    def _hazards(self, obj):
         return obj.get_hazards_string()
-    _display_hazards.short_description = 'Hazards'
+    _hazards.short_description = 'Hazards'
 
 
 @admin.register(DockManifest)
@@ -55,15 +55,26 @@ class DockEmployeeAdmin(admin.ModelAdmin):
 
 @admin.register(DockSupervisor)
 class DockSupervisorAdmin(admin.ModelAdmin):
-    list_display = ('employee',)
+    list_display = ('employee', 'get_email')
+
+    def get_email(self, obj):
+        return obj.employee.person.get_email()
+    get_email.short_description = 'E-mail'
+    get_email.admin_order_field = 'dock_employee__person__email'
 
 
 @admin.register(Person)
 class PersonAdmin(admin.ModelAdmin):
-    list_display = ('last_name', 'first_name',)
+    list_display = ('_last_name', '_first_name', 'user')
     inlines = [HomeAddressInline]
 
+    def _last_name(self, obj):
+        return obj.user.last_name
+    _last_name.short_description = 'Last Name'
+    _last_name.admin_order_field = 'user__last_name'
 
-
-
+    def _first_name(self, obj):
+        return obj.user.first_name
+    _first_name.short_description = 'First Name'
+    _first_name.admin_order_field = 'user__first_name'
 

@@ -1,9 +1,10 @@
-import uuid
 import elizabeth
 from random import randint
 from datetime import timedelta
+from django.contrib.auth.models import User
 from django.core.management import BaseCommand
 from django.utils.timezone import now
+from rest_framework.authtoken.models import Token
 from web.models import Person, Address, DockSupervisor, DockEmployee, ShipCaptain, CargoHazard, Ship, Container, Dock, \
     DockManifest
 
@@ -26,9 +27,15 @@ class Command(BaseCommand):
             dummy = elizabeth.Personal('nl')
             first_name = dummy.name()
             last_name = dummy.surname()
+            email = dummy.email()
             bank_account_number = dummy.credit_card_number()
 
-            person = Person(first_name=first_name, last_name=last_name, bank_account_number=bank_account_number)
+            user = User.objects.create_user(username=email, first_name=first_name, last_name=last_name,
+                                            email=email, password='test')
+
+            Token.objects.create(user=user)
+
+            person = Person(user=user, bank_account_number=bank_account_number)
             person.save()
 
             # Create and save dummy address

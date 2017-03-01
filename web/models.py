@@ -1,4 +1,5 @@
 import uuid
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -71,7 +72,7 @@ class DockSupervisor(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=False)
 
     def __str__(self):
-        return '%s %s ' % (self.employee.person.first_name, self.employee.person.last_name)
+        return '%s %s' % (self.employee.person.get_first_name(), self.employee.person.get_last_name())
 
 
 class DockEmployee(models.Model):
@@ -81,7 +82,7 @@ class DockEmployee(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=False)
 
     def __str__(self):
-        return '%s %s ' % (self.person.first_name, self.person.last_name)
+        return '%s %s' % (self.person.get_first_name(), self.person.get_last_name())
 
     def is_supervisor(self):
         return bool(self.docksupervisor)
@@ -94,18 +95,26 @@ class ShipCaptain(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=False)
 
     def __str__(self):
-        return '%s %s ' % (self.person.first_name, self.person.last_name)
+        return '%s %s ' % (self.person.get_first_name(), self.person.get_last_name())
 
 
 class Person(models.Model):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
+    user = models.OneToOneField(User)
     bank_account_number = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False)
 
     def __str__(self):
-        return '%s %s ' % (self.first_name, self.last_name)
+        return '%s %s' % (self.get_first_name(), self.get_last_name())
+
+    def get_first_name(self):
+        return self.user.first_name
+
+    def get_last_name(self):
+        return self.user.last_name
+
+    def get_email(self):
+        return self.user.email
 
 
 class Address(models.Model):
