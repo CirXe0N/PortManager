@@ -1,0 +1,34 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% load sass_tags %}
+
+{% block navigation %}{% endblock %}
+
+{% block content %}
+    <div class="authentication-container">
+        <div class="title">
+            DOCKIE
+        </div>
+        <form class="authentication-form" action="{% url 'authentication' %}" method="post">
+            {% csrf_token %}
+            <div class="header">
+                LOG IN
+            </div>
+            <div class="body">
+                <input type="text" id="username" name="username" placeholder="Username">
+                <input type="password" id="password" name="password" placeholder="Password">
+                <button type="submit" class="small expanded button"> LOG IN </button>
+
+                {% if is_failed_login == True %}
+                    <div class="callout alert">
+                        <p>The username and/or password are incorrect.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </form>
+
+        <div class="image">
+            <img src="{% static 'web/images/cargo_ship.png'%}">
+        </div>
+    </div>
+{% endblock %}

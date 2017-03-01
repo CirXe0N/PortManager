@@ -1,0 +1,56 @@
+{% extends 'web/base.html' %}
+
+{% block page-title %}
+    <div class="medium-3 columns">
+        USER PROFILE
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="personal-info-container">
+        <div class="block-title"> Personal Information </div>
+
+        <div class="row">
+            <div class="large-2 columns"> First Name: </div>
+            <div class="large-2 columns end"> {{ person.user.first_name }}</div>
+        </div>
+        <div class="row">
+            <div class="large-2 columns"> Last Name: </div>
+            <div class="large-2 columns end"> {{ person.user.last_name }}</div>
+        </div>
+        <div class="row">
+            <div class="large-2 columns"> E-mail: </div>
+            <div class="large-2 columns end"> {{ person.user.email }}</div>
+        </div>
+        <div class="row">
+            <div class="large-2 columns"> API Token: </div>
+            <div class="large-2 columns end"> {{ token.key }}</div>
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+        <div class="table-title"> Ships </div>
+        <table class="unstriped">
+            <thead>
+                <tr>
+                    <th>SHIP ID</th>
+                    <th>SHIP NAME</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ship in ships %}
+                    <tr class="non-link-row">
+                        <td> {{ ship.ship_id }} </td>
+                        <td> {{ ship.ship_name }} </td>
+                    </tr>
+                {% empty %}
+                    <tr class="non-link-row">
+                        <td class="text-center" colspan="2">
+                            There are no ships of yours in our system.
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

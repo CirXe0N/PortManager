@@ -1,5 +1,5 @@
 // Imports
-@import url('https://fonts.googleapis.com/css?family=Roboto:100,700|Simonetta:900|Work+Sans:400,600')
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,700|Simonetta:900|Work+Sans:400,600')
 
 // Fonts
 $font-roboto: 'Roboto', sans-serif
@@ -9,6 +9,7 @@ $font-work: 'Work Sans', sans-serif
 // Colors
 $color-blue: #3094C0
 $color-green: #1AC4A2
+$color-red: #ED4337
 
 // Styles
 .top-bar
@@ -33,15 +34,29 @@ $color-green: #1AC4A2
 
     li
       background-color: #262a35
-      font-size: 0.75rem
+      font-size: 0.85rem
       font-family: $font-roboto
       font-weight: 700
       letter-spacing: 0.1rem
 
       a
         color: #FFF
-        padding: 1.4rem 0.1rem 0.6rem 0.1rem
+        margin-top: 0.8rem
+        padding: 0.4rem 0.4rem 0.3rem 0.4rem
 
+    span
+      color: $color-blue
+
+    .logout
+      color: $color-red
+
+    .button
+      color: $color-green
+      border-color: $color-green
+
+      &:hover
+        color: #FFF
+        border-color: #FFF
 .site-header
   background-color: #262a35
   padding-top: 1rem
@@ -73,6 +88,19 @@ $color-green: #1AC4A2
   padding-top: 3rem
   font-family: $font-work
   color: #333
+
+.personal-info-container
+  padding-bottom: 2rem
+
+  .block-title
+    display: inline-block
+    font-weight: 600
+    font-size: 1.25rem
+    padding-top: 1rem
+    padding-bottom: 0.5rem
+    color: rgba(5, 117, 172, 0.25)
+
+
 
 .table-wrapper
   .table-title
@@ -132,3 +160,55 @@ $color-green: #1AC4A2
       tr:hover:not(.non-link-row)
         background-color: rgba(176, 202, 205, 0.2)
         cursor: pointer
+
+.authentication-container
+  margin-top: 5%
+  margin-left: auto
+  margin-right: auto
+  width: 400px
+
+  .title
+    text-align: center
+    font-size: 3rem
+    font-family: $font-simonetta
+    color: $color-green
+    padding-bottom: 2rem
+
+
+  .authentication-form
+    background-color: #262a35
+    padding-top: 1.4rem
+
+    .header
+      border-left: solid 1.2rem $color-green
+      font-size: 1.75rem
+      font-family: $font-roboto
+      color: #FFF
+      padding-left: 1rem
+      font-weight: 700
+
+    .body
+      padding: 2rem 2.5rem 1rem 2.5rem
+
+      input
+        font-family: $font-roboto
+        background-color: #353b4d
+        color: #FFF
+        font-weight: 300
+
+      button
+        margin-top: 2rem
+        background-color: $color-green
+        color: #FFF
+        font-weight: 300
+        font-size: 0.9rem
+
+      .callout
+        font-size: 0.75rem
+        color: red
+
+  .image
+    margin-left: auto
+    margin-right: auto
+    padding-top: 4rem
+    width: 70%
