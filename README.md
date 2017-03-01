@@ -88,5 +88,6 @@ Authorization  | Token [API KEY of a ship captain] |
 
 
 **Available Endpoints**
+
 GET /api/v1/ships/{ship_id or ship_name}
 
